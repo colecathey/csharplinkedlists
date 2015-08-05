@@ -15,14 +15,22 @@ namespace SinglyLinkedLists
         private SinglyLinkedListNode next;
         public SinglyLinkedListNode Next
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return next; }
+            set
+            {
+                if (value.Equals(this))
+                {
+                    throw new ArgumentException();
+                }
+                this.next = value;
+            }
         }
 
-        private string value;
-        public string Value 
+        private string value; // same as this.value
+                              // Value is a property!! Fix the getter!
+        public string Value
         {
-            get { throw new NotImplementedException(); }
+            get { return value; }
         }
 
         public static bool operator <(SinglyLinkedListNode node1, SinglyLinkedListNode node2)
@@ -37,9 +45,13 @@ namespace SinglyLinkedLists
             return node1.CompareTo(node2) > 0;
         }
 
-        public SinglyLinkedListNode(string value)
+
+        public SinglyLinkedListNode(string input)
         {
-            throw new NotImplementedException();
+            this.value = input;
+
+            // data members default to null, but...
+            this.next = null;
 
             // Used by the visualizer:
             allNodes.Add(this);
@@ -48,12 +60,55 @@ namespace SinglyLinkedLists
         // READ: http://msdn.microsoft.com/en-us/library/system.icomparable.compareto.aspx
         public int CompareTo(Object obj)
         {
-            throw new NotImplementedException();
+            SinglyLinkedListNode other_node = obj as SinglyLinkedListNode;
+            return other_node == null ? 1 : this.value.CompareTo(other_node.Value);
+
+            /* The same as: 
+            if (other_node == null) 
+            {
+                return 1;
+            } else 
+            {
+                return this.value.CompareTo(other_node.Value);
+            }
+            */
+
         }
 
         public bool IsLast()
         {
-            throw new NotImplementedException();
+            /* this makes the test pass
+            if (this.next == null)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+            */
+            /* Refactor 1: no else statement
+            if (this.next == null)
+            {
+                return true;
+            } 
+            return false;
+            */
+
+            /* Refactor 2 */
+            return this.next == null;
+
         }
+
+
+        public override string ToString()
+        {
+            return this.value;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this.CompareTo(obj) == 0;
+        }
+
     }
 }
