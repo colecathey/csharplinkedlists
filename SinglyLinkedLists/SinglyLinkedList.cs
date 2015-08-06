@@ -19,10 +19,7 @@ namespace SinglyLinkedLists
             throw new NotImplementedException();
         }
 
-        public override string ToString()
-        {
-            return "{ }";
-        }
+        
 
         // READ: http://msdn.microsoft.com/en-us/library/6x16t2tx.aspx
         public string this[int i]
@@ -168,7 +165,30 @@ return null;
         {
             throw new NotImplementedException();
         }
-
-        
+        public override string ToString()
+        {
+            var opening = "{";
+            var ending = "}";            
+            var space = " ";
+            var output = "";
+            var quote = "\"";
+            var comma = "," + space;
+            output += opening;
+            var node = this.first_node;
+            if (this.Count() >= 1)
+            {
+                output += space;                
+                while (!node.IsLast())
+                {
+                    output += quote + node.Value + quote + comma;
+                    node = node.Next;
+                }
+                output += quote + this.Last() + quote;
+            }
+            
+            output += space;
+            output += ending;
+            return output;
+        }
     }
 }
