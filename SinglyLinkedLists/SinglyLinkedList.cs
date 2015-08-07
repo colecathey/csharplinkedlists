@@ -184,8 +184,7 @@ return null;
                     node = node.Next;
                 }
                 output += quote + this.Last() + quote;
-            }
-            
+            }            
             output += space;
             output += ending;
             return output;
