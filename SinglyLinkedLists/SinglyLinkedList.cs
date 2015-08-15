@@ -172,7 +172,7 @@ return null;
             var space = " ";
             var output = "";
             var quote = "\"";
-            var comma = "," + space;
+            //var comma = "," + space;
             output += opening;
             var node = this.first_node;
             if (this.Count() >= 1)
