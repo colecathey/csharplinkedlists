@@ -7,6 +7,7 @@ namespace SinglyLinkedLists
 {
     public class SinglyLinkedList
     {
+        
         private SinglyLinkedListNode first_node;
         public SinglyLinkedList()
         {
@@ -30,12 +31,42 @@ namespace SinglyLinkedLists
 
         public void AddAfter(string existingValue, string value)
         {
-            throw new NotImplementedException();
+            var new_node = new SinglyLinkedListNode(value);
+            var node = first_node;
+            while (node != null)
+            {
+                if(node.Value == existingValue)
+                {
+                    var orignext = node.Next;
+                    node.Next = new_node;
+                    new_node.Next = orignext;
+                    
+                    return;
+                }
+                node = node.Next;
+            }
+            throw new ArgumentException();
+            
         }
 
         public void AddFirst(string value)
         {
-            throw new NotImplementedException();
+            
+            if (this.first_node == null)
+            {
+                first_node = new SinglyLinkedListNode(value);
+            } else
+            {
+                var new_node = new SinglyLinkedListNode(value);
+                new_node.Next = first_node;
+                this.first_node = new_node;
+
+                
+            }
+            
+            
+            
+            
         }
 
         public void AddLast(string value)
@@ -66,7 +97,7 @@ namespace SinglyLinkedLists
             }
             else
             {
-                int length = 0;
+                int length = 1;
                 var node = this.first_node;
                 // Complrxity is O(n)
                 while (node.Next != null)
@@ -163,7 +194,14 @@ return null;
 
         public string[] ToArray()
         {
-            throw new NotImplementedException();
+
+            string[] array = new string[this.Count()];
+            for(var i =0; i < this.Count(); i++)
+            {
+                array[i] = this.ElementAt(i);
+            }
+            return array;
+
         }
         public override string ToString()
         {
@@ -172,7 +210,7 @@ return null;
             var space = " ";
             var output = "";
             var quote = "\"";
-            //var comma = "," + space;
+            var comma = "," + space;
             output += opening;
             var node = this.first_node;
             if (this.Count() >= 1)
