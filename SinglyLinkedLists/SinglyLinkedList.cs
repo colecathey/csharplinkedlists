@@ -20,7 +20,7 @@ namespace SinglyLinkedLists
             throw new NotImplementedException();
         }
 
-        
+        //start here
 
         // READ: http://msdn.microsoft.com/en-us/library/6x16t2tx.aspx
         public string this[int i]
@@ -33,7 +33,7 @@ namespace SinglyLinkedLists
         {
             var new_node = new SinglyLinkedListNode(value);
             var node = first_node;
-            while (node != null)
+            if (node != null)
             {
                 if(node.Value == existingValue)
                 {
@@ -42,9 +42,16 @@ namespace SinglyLinkedLists
                     new_node.Next = orignext;
                     
                     return;
-                }
+                } 
                 node = node.Next;
+            } else if (node != null && node.Next == null)
+            {
+                node.Next = new_node;
+
+                return;
             }
+
+            
             throw new ArgumentException();
             
         }
@@ -169,7 +176,7 @@ namespace SinglyLinkedLists
 
             {
 
-return null;
+                return null;
             }
             else
             {
