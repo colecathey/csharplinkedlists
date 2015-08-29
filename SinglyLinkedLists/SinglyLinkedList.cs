@@ -20,7 +20,7 @@ namespace SinglyLinkedLists
             throw new NotImplementedException();
         }
 
-        //start here
+        
 
         // READ: http://msdn.microsoft.com/en-us/library/6x16t2tx.aspx
         public string this[int i]
@@ -33,23 +33,26 @@ namespace SinglyLinkedLists
         {
             var new_node = new SinglyLinkedListNode(value);
             var node = first_node;
-            if (node != null)
+            while (node != null)
             {
                 if(node.Value == existingValue)
                 {
+                    if (node.IsLast())
+                    {
+                        node.Next = new_node;
+
+                        return;
+                    }
                     var orignext = node.Next;
-                    node.Next = new_node;
-                    new_node.Next = orignext;
+                node.Next = new_node;
+                new_node.Next = orignext;
                     
+
                     return;
+
                 } 
                 node = node.Next;
-            } else if (node.IsLast())
-            {
-                node.Next = new_node;
-
-                return;
-            }
+            } 
 
             
             throw new ArgumentException();
@@ -85,11 +88,15 @@ namespace SinglyLinkedLists
             else
             {
                 var node = this.first_node;
-                while (!node.IsLast()) // what's another way to do this????
+                if (!node.IsLast()) // what's another way to do this????
                 {
                     node = node.Next;
                 }
-                node.Next = new SinglyLinkedListNode(value);
+                else if(node.IsLast())                
+                {
+                    node.Next = new SinglyLinkedListNode(value);
+                }
+                //node.Next = new SinglyLinkedListNode(value);
             }
         }
 
