@@ -44,7 +44,7 @@ namespace SinglyLinkedLists
                     return;
                 } 
                 node = node.Next;
-            } else if (node != null && node.Next == null)
+            } else if (node.IsLast())
             {
                 node.Next = new_node;
 
@@ -92,6 +92,8 @@ namespace SinglyLinkedLists
                 node.Next = new SinglyLinkedListNode(value);
             }
         }
+
+      
 
         // NOTE: There is more than one way to accomplish this.  One is O(n).  The other is O(1).
         public int Count()
