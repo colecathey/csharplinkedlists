@@ -29,14 +29,33 @@ namespace SinglyLinkedLists
             
         }
 
-        
+
 
         // READ: http://msdn.microsoft.com/en-us/library/6x16t2tx.aspx
-        public string this[int i]
+
+        
+
+        public string this[int index]
         {
             
-            get { return this[i]; }
-            set { this[i] = value; }
+            get
+            {
+                if (index >= 0)
+                {
+                    return this[index];
+                } else
+                {
+                    return null;
+                }
+            }
+               
+            set
+            {
+                if (index >= 0)
+                {
+                    this[index] = value;
+                }
+               }
         
         }
 
