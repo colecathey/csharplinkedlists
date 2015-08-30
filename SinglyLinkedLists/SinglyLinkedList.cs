@@ -40,20 +40,29 @@ namespace SinglyLinkedLists
             
             get
             {
-                if (index >= 0)
-                {
-                    return this[index];
-                } else
-                {
-                    return null;
-                }
+                return this.ElementAt(index); 
             }
                
             set
             {
-                if (index >= 0)
+                var placeholder = new SinglyLinkedList();
+                for(var j = 0; j < this.Count(); j++)
                 {
-                    this[index] = value;
+                    if (j == index)
+                    {
+                        placeholder.AddLast(value);
+                    
+                    } else
+                    {
+                        placeholder.AddLast(this.ElementAt(j));
+                    } 
+                }
+                first_node = new SinglyLinkedListNode(placeholder.First());
+
+                for(var k = 1; k < placeholder.Count(); k++ )
+                {
+                    this.AddLast(placeholder.ElementAt(k));
+
                 }
                }
         
@@ -196,7 +205,18 @@ namespace SinglyLinkedLists
 
         public int IndexOf(string value)
         {
-            throw new NotImplementedException();
+            var indexValue = -1;
+            for(var i = 0; i < this.Count(); i++)
+            {
+                if(this.ElementAt(i) == value)
+                {
+                    indexValue = i;
+                    break;
+                }
+            }
+            return indexValue;
+
+            
         }
 
         public bool IsSorted()
