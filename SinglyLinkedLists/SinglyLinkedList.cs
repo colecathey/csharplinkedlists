@@ -34,8 +34,10 @@ namespace SinglyLinkedLists
         // READ: http://msdn.microsoft.com/en-us/library/6x16t2tx.aspx
         public string this[int i]
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            
+            get { return this[i]; }
+            set { this[i] = value; }
+        
         }
 
         public void AddAfter(string existingValue, string value)
