@@ -260,11 +260,12 @@ namespace SinglyLinkedLists
                 }
             }
             first_node = new SinglyLinkedListNode(placeholder.First());
-            for (var j = 0; j < this.Count(); j++)
+            for (var j = 1; j < placeholder.Count(); ++j)
             {
                 this.AddLast(placeholder.ElementAt(j));
             }
         }
+        
 
         public void Sort()
         {
