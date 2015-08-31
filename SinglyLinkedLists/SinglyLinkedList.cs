@@ -249,7 +249,21 @@ namespace SinglyLinkedLists
 
         public void Remove(string value)
         {
-            throw new NotImplementedException();
+            int indexValue = this.IndexOf(value);
+            var placeholder = new SinglyLinkedList();
+
+            for(var i = 0; i < this.Count(); i++)
+            {
+                if(i != indexValue)
+                {
+                    placeholder.AddLast(this.ElementAt(i));
+                }
+            }
+            first_node = new SinglyLinkedListNode(placeholder.First());
+            for (var j = 0; j < this.Count(); j++)
+            {
+                this.AddLast(placeholder.ElementAt(j));
+            }
         }
 
         public void Sort()
