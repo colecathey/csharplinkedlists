@@ -94,12 +94,12 @@ namespace SinglyLinkedLists
             }
             else
             {
-                var node = this.first_node;
-                if (!node.IsLast()) // what's another way to do this????
-                {
-                    node = node.Next;
-                }                
-                node.Next = new SinglyLinkedListNode(value);
+                var node = this.first_node;                
+                    while (!node.IsLast()) // what's another way to do this????
+                    {
+                        node = node.Next;
+                    }
+                    node.Next = new SinglyLinkedListNode(value);                
             }
         }
         // NOTE: There is more than one way to accomplish this.  One is O(n).  The other is O(1).
@@ -113,7 +113,7 @@ namespace SinglyLinkedLists
             }
             else
             {
-                int length = 0;
+                int length = 1;
                 var node = this.first_node;
                 // Complrxity is O(n)
                 while (node.Next != null)
