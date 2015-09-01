@@ -6,18 +6,15 @@ using System.Text;
 namespace SinglyLinkedLists
 {
     public class SinglyLinkedList
-    {
-        
+    {        
         private SinglyLinkedListNode first_node;
         public SinglyLinkedList()
         {
             // NOTE: This constructor isn't necessary, once you've implemented the constructor below.
         }
-
         // READ: http://msdn.microsoft.com/en-us/library/aa691335(v=vs.71).aspx
         public SinglyLinkedList(params object[] values)
-        {
-            
+        {            
             if(values.Count() == 0)
             {
                 throw new NotImplementedException();
@@ -25,24 +22,15 @@ namespace SinglyLinkedLists
             for (var i = 0; i < values.Count(); i++)
             {
                 this.AddLast(values[i].ToString());
-            }
-            
+            }            
         }
-
-
-
-        // READ: http://msdn.microsoft.com/en-us/library/6x16t2tx.aspx
-
-        
-
+        // READ: http://msdn.microsoft.com/en-us/library/6x16t2tx.aspx        
         public string this[int index]
-        {
-            
+        {            
             get
             {
                 return this.ElementAt(index); 
-            }
-               
+            }               
             set
             {
                 var placeholder = new SinglyLinkedList();
@@ -50,8 +38,7 @@ namespace SinglyLinkedLists
                 {
                     if (j == index)
                     {
-                        placeholder.AddLast(value);
-                    
+                        placeholder.AddLast(value);                    
                     } else
                     {
                         placeholder.AddLast(this.ElementAt(j));
@@ -62,12 +49,9 @@ namespace SinglyLinkedLists
                 for(var k = 1; k < placeholder.Count(); k++ )
                 {
                     this.AddLast(placeholder.ElementAt(k));
-
                 }
-               }
-        
+               }       
         }
-
         public void AddAfter(string existingValue, string value)
         {
             var new_node = new SinglyLinkedListNode(value);
@@ -79,28 +63,19 @@ namespace SinglyLinkedLists
                     if (node.IsLast())
                     {
                         node.Next = new_node;
-
                         return;
                     }
                     var orignext = node.Next;
                 node.Next = new_node;
-                new_node.Next = orignext;
-                    
-
+                new_node.Next = orignext;                    
                     return;
-
                 } 
                 node = node.Next;
-            } 
-
-            
-            throw new ArgumentException();
-            
+            }             
+            throw new ArgumentException();            
         }
-
         public void AddFirst(string value)
-        {
-            
+        {            
             if (this.first_node == null)
             {
                 first_node = new SinglyLinkedListNode(value);
@@ -108,16 +83,9 @@ namespace SinglyLinkedLists
             {
                 var new_node = new SinglyLinkedListNode(value);
                 new_node.Next = first_node;
-                this.first_node = new_node;
-
-                
-            }
-            
-            
-            
-            
+                this.first_node = new_node;                
+            }            
         }
-
         public void AddLast(string value)
         {
             if (this.First() == null)
@@ -130,16 +98,10 @@ namespace SinglyLinkedLists
                 if (!node.IsLast()) // what's another way to do this????
                 {
                     node = node.Next;
-                }
-                
+                }                
                 node.Next = new SinglyLinkedListNode(value);
             }
         }
-
-       
-
-      
-
         // NOTE: There is more than one way to accomplish this.  One is O(n).  The other is O(1).
         public int Count()
         {
@@ -158,13 +120,10 @@ namespace SinglyLinkedLists
                 {
                     length++;
                     node = node.Next;
-                }
+                }               
                 return length;
-
-            }
-            throw new NotImplementedException();
+            }         
         }
-
         public string ElementAt(int index)
         {
             if (this.First() == null)
@@ -174,8 +133,6 @@ namespace SinglyLinkedLists
             else
             {
                 var node = this.first_node;
-
-
                 for (var i = 0; i <= index; i++)
                 {
                     if (i == index)
@@ -187,12 +144,9 @@ namespace SinglyLinkedLists
                 return node.Value;
             }
         }
-
         public string First()
         {
-
             if (this.first_node == null)
-
             {
                 return null;
             }
@@ -202,7 +156,6 @@ namespace SinglyLinkedLists
             }
         }
         //return this.first_node ? null : this.first_node.Value;
-
         public int IndexOf(string value)
         {
             var indexValue = -1;
@@ -214,16 +167,12 @@ namespace SinglyLinkedLists
                     break;
                 }
             }
-            return indexValue;
-
-            
+            return indexValue;            
         }
-
         public bool IsSorted()
         {
             throw new NotImplementedException();
         }
-
         // HINT 1: You can extract this functionality (finding the last item in the list) from a method you've already written!
         // HINT 2: I suggest writing a private helper method LastNode()
         // HINT 3: If you highlight code and right click, you can use the refactor menu to extract a method for you...
@@ -231,9 +180,7 @@ namespace SinglyLinkedLists
         {
             var node = this.first_node;
             if (node == null)
-
             {
-
                 return null;
             }
             else
@@ -243,19 +190,16 @@ namespace SinglyLinkedLists
                     node = node.Next;
                 }
                 return node.Value;
-
             }
         }
-
         public void Remove(string value)
         {
             int indexValue = this.IndexOf(value);
             var placeholder = new SinglyLinkedList();
-
             for(var i = 0; i < this.Count(); i++)
             {
-                if(i != indexValue)
-                {
+                if(i != indexValue )
+                {                    
                     placeholder.AddLast(this.ElementAt(i));
                 }
             }
@@ -264,24 +208,19 @@ namespace SinglyLinkedLists
             {
                 this.AddLast(placeholder.ElementAt(j));
             }
-        }
-        
-
+        }        
         public void Sort()
         {
             throw new NotImplementedException();
         }
-
         public string[] ToArray()
         {
-
             string[] array = new string[this.Count()];
             for(var i =0; i < this.Count(); i++)
             {
                 array[i] = this.ElementAt(i);
             }
             return array;
-
         }
         public override string ToString()
         {
