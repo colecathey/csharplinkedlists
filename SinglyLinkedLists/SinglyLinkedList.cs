@@ -113,7 +113,7 @@ namespace SinglyLinkedLists
             }
             else
             {
-                int length = 1;
+                int length = 0;
                 var node = this.first_node;
                 // Complrxity is O(n)
                 while (node.Next != null)
